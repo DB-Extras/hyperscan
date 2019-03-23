@@ -1,3 +1,10 @@
+# ClickHouse specific info
+
+We do not want to have a ragel dependency, so we just create the generated files by ourselves. All you need to do is `ragel6 file -o gen_file`
+and copy to the needed directories.
+Then delete all the specific info about ragel in CMakeLists.txt and in util/CMakeLists.txt.
+Also in Linux AVX2 is enabled by default -- just set FAT_RUNTIME variable to true if AVX2 is presented.
+
 # Hyperscan
 
 Hyperscan is a high-performance multiple regex matching library. It follows the
