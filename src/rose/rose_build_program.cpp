@@ -95,7 +95,7 @@ OffsetMap makeOffsetMap(const RoseProgram &program, u32 *total_len) {
 }
 
 RoseProgram::RoseProgram() {
-    prog.push_back(make_unique<RoseInstrEnd>());
+    prog.push_back(ue2::make_unique<RoseInstrEnd>());
 }
 
 RoseProgram::~RoseProgram() = default;
@@ -297,24 +297,24 @@ void addEnginesEodProgram(u32 eodNfaIterOffset, RoseProgram &program) {
     }
 
     RoseProgram block;
-    block.add_before_end(make_unique<RoseInstrEnginesEod>(eodNfaIterOffset));
+    block.add_before_end(ue2::make_unique<RoseInstrEnginesEod>(eodNfaIterOffset));
     program.add_block(move(block));
 }
 
 void addSuffixesEodProgram(RoseProgram &program) {
     RoseProgram block;
-    block.add_before_end(make_unique<RoseInstrSuffixesEod>());
+    block.add_before_end(ue2::make_unique<RoseInstrSuffixesEod>());
     program.add_block(move(block));
 }
 
 void addMatcherEodProgram(RoseProgram &program) {
     RoseProgram block;
-    block.add_before_end(make_unique<RoseInstrMatcherEod>());
+    block.add_before_end(ue2::make_unique<RoseInstrMatcherEod>());
     program.add_block(move(block));
 }
 
 void addFlushCombinationProgram(RoseProgram &program) {
-    program.add_before_end(make_unique<RoseInstrFlushCombination>());
+    program.add_before_end(ue2::make_unique<RoseInstrFlushCombination>());
 }
 
 static
@@ -338,11 +338,11 @@ void makeRoleCheckLeftfix(const RoseBuildImpl &build,
 
     unique_ptr<RoseInstruction> ri;
     if (is_prefix) {
-        ri = make_unique<RoseInstrCheckPrefix>(lni.queue, build.g[v].left.lag,
+        ri = ue2::make_unique<RoseInstrCheckPrefix>(lni.queue, build.g[v].left.lag,
                                                build.g[v].left.leftfix_report,
                                                end_inst);
     } else {
-        ri = make_unique<RoseInstrCheckInfix>(lni.queue, build.g[v].left.lag,
+        ri = ue2::make_unique<RoseInstrCheckInfix>(lni.queue, build.g[v].left.lag,
                                               build.g[v].left.leftfix_report,
                                               end_inst);
     }
@@ -380,7 +380,7 @@ void makeAnchoredLiteralDelay(const RoseBuildImpl &build,
     u32 anch_id = prog_build.anchored_programs.at(lit_id);
 
     const auto *end_inst = program.end_instruction();
-    auto ri = make_unique<RoseInstrAnchoredDelay>(groups, anch_id, end_inst);
+    auto ri = ue2::make_unique<RoseInstrAnchoredDelay>(groups, anch_id, end_inst);
     program.add_before_end(move(ri));
 }
 
@@ -389,7 +389,7 @@ void makeDedupe(const ReportManager &rm, const Report &report,
                 RoseProgram &program) {
     const auto *end_inst = program.end_instruction();
     auto ri =
-        make_unique<RoseInstrDedupe>(report.quashSom, rm.getDkey(report),
+        ue2::make_unique<RoseInstrDedupe>(report.quashSom, rm.getDkey(report),
                                      report.offsetAdjust, end_inst);
     program.add_before_end(move(ri));
 }
@@ -398,7 +398,7 @@ static
 void makeDedupeSom(const ReportManager &rm, const Report &report,
                    RoseProgram &program) {
     const auto *end_inst = program.end_instruction();
-    auto ri = make_unique<RoseInstrDedupeSom>(report.quashSom,
+    auto ri = ue2::make_unique<RoseInstrDedupeSom>(report.quashSom,
                                               rm.getDkey(report),
                                               report.offsetAdjust, end_inst);
     program.add_before_end(move(ri));
@@ -424,7 +424,7 @@ void makeCatchup(const ReportManager &rm, bool needs_catchup,
         return;
     }
 
-    program.add_before_end(make_unique<RoseInstrCatchUp>());
+    program.add_before_end(ue2::make_unique<RoseInstrCatchUp>());
 }
 
 static
@@ -507,12 +507,12 @@ void addLogicalSetRequired(const Report &report, ReportManager &rm,
         return;
     }
     // set matching status of current lkey
-    auto risl = make_unique<RoseInstrSetLogical>(report.lkey,
+    auto risl = ue2::make_unique<RoseInstrSetLogical>(report.lkey,
                                                  report.offsetAdjust);
     program.add_before_end(move(risl));
     // set current lkey's corresponding ckeys active, pending to check
     for (auto ckey : rm.getRelateCKeys(report.lkey)) {
-        auto risc = make_unique<RoseInstrSetCombination>(ckey);
+        auto risc = ue2::make_unique<RoseInstrSetCombination>(ckey);
         program.add_before_end(move(risc));
     }
 }
@@ -528,7 +528,7 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
 
     // Handle min/max offset checks.
     if (report.minOffset > 0 || report.maxOffset < MAX_OFFSET) {
-        auto ri = make_unique<RoseInstrCheckBounds>(report.minOffset,
+        auto ri = ue2::make_unique<RoseInstrCheckBounds>(report.minOffset,
                                                     report.maxOffset, end_inst);
         report_block.add_before_end(move(ri));
     }
@@ -536,7 +536,7 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
     // If this report has an exhaustion key, we can check it in the program
     // rather than waiting until we're in the callback adaptor.
     if (report.ekey != INVALID_EKEY) {
-        auto ri = make_unique<RoseInstrCheckExhausted>(report.ekey, end_inst);
+        auto ri = ue2::make_unique<RoseInstrCheckExhausted>(report.ekey, end_inst);
         report_block.add_before_end(move(ri));
     }
 
@@ -544,7 +544,7 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
     // calculated.
     if (isExternalSomReport(report) &&
         report.type != EXTERNAL_CALLBACK_SOM_PASS) {
-        auto ri = make_unique<RoseInstrSomFromReport>();
+        auto ri = ue2::make_unique<RoseInstrSomFromReport>();
         writeSomOperation(report, &ri->som);
         report_block.add_before_end(move(ri));
     }
@@ -552,13 +552,13 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
     // Min length constraint.
     if (report.minLength > 0) {
         assert(build.hasSom);
-        auto ri = make_unique<RoseInstrCheckMinLength>(
+        auto ri = ue2::make_unique<RoseInstrCheckMinLength>(
             report.offsetAdjust, report.minLength, end_inst);
         report_block.add_before_end(move(ri));
     }
 
     if (report.quashSom) {
-        report_block.add_before_end(make_unique<RoseInstrSomZero>());
+        report_block.add_before_end(ue2::make_unique<RoseInstrSomZero>());
     }
 
     switch (report.type) {
@@ -574,7 +574,7 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
                 if (needs_dedupe) {
                     if (!report.quiet) {
                         report_block.add_before_end(
-                            make_unique<RoseInstrDedupeAndReport>(
+                            ue2::make_unique<RoseInstrDedupeAndReport>(
                                 report.quashSom, build.rm.getDkey(report),
                                 report.onmatch, report.offsetAdjust, end_inst));
                     } else {
@@ -583,7 +583,7 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
                 } else {
                     if (!report.quiet) {
                         report_block.add_before_end(
-                            make_unique<RoseInstrReport>(
+                            ue2::make_unique<RoseInstrReport>(
                                 report.onmatch, report.offsetAdjust));
                     }
                 }
@@ -593,28 +593,28 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
                 }
                 if (!report.quiet) {
                     report_block.add_before_end(
-                        make_unique<RoseInstrReportExhaust>(
+                        ue2::make_unique<RoseInstrReportExhaust>(
                             report.onmatch, report.offsetAdjust, report.ekey));
                 } else {
                     report_block.add_before_end(
-                        make_unique<RoseInstrSetExhaust>(report.ekey));
+                        ue2::make_unique<RoseInstrSetExhaust>(report.ekey));
                 }
             }
         } else { // has_som
             makeDedupeSom(build.rm, report, report_block);
             if (report.ekey == INVALID_EKEY) {
                 if (!report.quiet) {
-                    report_block.add_before_end(make_unique<RoseInstrReportSom>(
+                    report_block.add_before_end(ue2::make_unique<RoseInstrReportSom>(
                         report.onmatch, report.offsetAdjust));
                 }
             } else {
                 if (!report.quiet) {
                     report_block.add_before_end(
-                        make_unique<RoseInstrReportSomExhaust>(
+                        ue2::make_unique<RoseInstrReportSomExhaust>(
                             report.onmatch, report.offsetAdjust, report.ekey));
                 } else {
                     report_block.add_before_end(
-                        make_unique<RoseInstrSetExhaust>(report.ekey));
+                        ue2::make_unique<RoseInstrSetExhaust>(report.ekey));
                 }
             }
         }
@@ -635,17 +635,17 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
             addFlushCombinationProgram(report_block);
         }
         if (has_som) {
-            auto ri = make_unique<RoseInstrReportSomAware>();
+            auto ri = ue2::make_unique<RoseInstrReportSomAware>();
             writeSomOperation(report, &ri->som);
             report_block.add_before_end(move(ri));
         } else {
-            auto ri = make_unique<RoseInstrReportSomInt>();
+            auto ri = ue2::make_unique<RoseInstrReportSomInt>();
             writeSomOperation(report, &ri->som);
             report_block.add_before_end(move(ri));
         }
         break;
     case INTERNAL_ROSE_CHAIN: {
-        report_block.add_before_end(make_unique<RoseInstrReportChain>(
+        report_block.add_before_end(ue2::make_unique<RoseInstrReportChain>(
             report.onmatch, report.topSquashDistance));
         break;
     }
@@ -659,17 +659,17 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
         makeDedupeSom(build.rm, report, report_block);
         if (report.ekey == INVALID_EKEY) {
             if (!report.quiet) {
-                report_block.add_before_end(make_unique<RoseInstrReportSom>(
+                report_block.add_before_end(ue2::make_unique<RoseInstrReportSom>(
                     report.onmatch, report.offsetAdjust));
             }
         } else {
             if (!report.quiet) {
                 report_block.add_before_end(
-                    make_unique<RoseInstrReportSomExhaust>(
+                    ue2::make_unique<RoseInstrReportSomExhaust>(
                         report.onmatch, report.offsetAdjust, report.ekey));
             } else {
                 report_block.add_before_end(
-                    make_unique<RoseInstrSetExhaust>(report.ekey));
+                    ue2::make_unique<RoseInstrSetExhaust>(report.ekey));
             }
         }
         addLogicalSetRequired(report, build.rm, report_block);
@@ -681,17 +681,17 @@ void makeReport(const RoseBuildImpl &build, const ReportID id,
         makeDedupeSom(build.rm, report, report_block);
         if (report.ekey == INVALID_EKEY) {
             if (!report.quiet) {
-                report_block.add_before_end(make_unique<RoseInstrReportSom>(
+                report_block.add_before_end(ue2::make_unique<RoseInstrReportSom>(
                     report.onmatch, report.offsetAdjust));
             }
         } else {
             if (!report.quiet) {
                 report_block.add_before_end(
-                    make_unique<RoseInstrReportSomExhaust>(
+                    ue2::make_unique<RoseInstrReportSomExhaust>(
                         report.onmatch, report.offsetAdjust, report.ekey));
             } else {
                 report_block.add_before_end(
-                    make_unique<RoseInstrSetExhaust>(report.ekey));
+                    ue2::make_unique<RoseInstrSetExhaust>(report.ekey));
             }
         }
         addLogicalSetRequired(report, build.rm, report_block);
@@ -718,11 +718,11 @@ void makeRoleReports(const RoseBuildImpl &build,
         assert(contains(leftfix_info, v));
         const left_build_info &lni = leftfix_info.at(v);
         program.add_before_end(
-            make_unique<RoseInstrSomLeftfix>(lni.queue, g[v].left.lag));
+            ue2::make_unique<RoseInstrSomLeftfix>(lni.queue, g[v].left.lag));
         report_som = true;
     } else if (g[v].som_adjust) {
         program.add_before_end(
-            make_unique<RoseInstrSomAdjust>(g[v].som_adjust));
+            ue2::make_unique<RoseInstrSomAdjust>(g[v].som_adjust));
         report_som = true;
     }
 
@@ -744,7 +744,7 @@ void makeRoleSetState(const unordered_map<RoseVertex, u32> &roleStateIndices,
     if (it == end(roleStateIndices)) {
         return;
     }
-    program.add_before_end(make_unique<RoseInstrSetState>(it->second));
+    program.add_before_end(ue2::make_unique<RoseInstrSetState>(it->second));
 }
 
 static
@@ -768,7 +768,7 @@ void makePushDelayedInstructions(const RoseLiteralMap &literals,
     });
 
     for (const auto &ri : delay_instructions) {
-        program.add_before_end(make_unique<RoseInstrPushDelayed>(ri));
+        program.add_before_end(ue2::make_unique<RoseInstrPushDelayed>(ri));
     }
 }
 
@@ -797,10 +797,10 @@ void makeCheckLiteralInstruction(const rose_literal_id &lit,
         const auto *end_inst = program.end_instruction();
         unique_ptr<RoseInstruction> ri;
         if (lit.s.any_nocase()) {
-            ri = make_unique<RoseInstrCheckMedLitNocase>(lit.s.get_string(),
+            ri = ue2::make_unique<RoseInstrCheckMedLitNocase>(lit.s.get_string(),
                                                          end_inst);
         } else {
-            ri = make_unique<RoseInstrCheckMedLit>(lit.s.get_string(),
+            ri = ue2::make_unique<RoseInstrCheckMedLit>(lit.s.get_string(),
                                                    end_inst);
         }
         program.add_before_end(move(ri));
@@ -816,10 +816,10 @@ void makeCheckLiteralInstruction(const rose_literal_id &lit,
     const auto *end_inst = program.end_instruction();
     unique_ptr<RoseInstruction> ri;
     if (lit.s.any_nocase()) {
-        ri = make_unique<RoseInstrCheckLongLitNocase>(lit.s.get_string(),
+        ri = ue2::make_unique<RoseInstrCheckLongLitNocase>(lit.s.get_string(),
                                                       end_inst);
     } else {
-        ri = make_unique<RoseInstrCheckLongLit>(lit.s.get_string(), end_inst);
+        ri = ue2::make_unique<RoseInstrCheckLongLit>(lit.s.get_string(), end_inst);
     }
     program.add_before_end(move(ri));
 }
@@ -836,7 +836,7 @@ void makeRoleCheckNotHandled(ProgramBuild &prog_build, RoseVertex v,
     }
 
     const auto *end_inst = program.end_instruction();
-    auto ri = make_unique<RoseInstrCheckNotHandled>(handled_key, end_inst);
+    auto ri = ue2::make_unique<RoseInstrCheckNotHandled>(handled_key, end_inst);
     program.add_before_end(move(ri));
 }
 
@@ -885,7 +885,7 @@ void makeRoleCheckBounds(const RoseBuildImpl &build, RoseVertex v,
 
     const auto *end_inst = program.end_instruction();
     program.add_before_end(
-        make_unique<RoseInstrCheckBounds>(min_bound, max_bound, end_inst));
+        ue2::make_unique<RoseInstrCheckBounds>(min_bound, max_bound, end_inst));
 }
 
 static
@@ -920,7 +920,7 @@ void makeRoleGroups(const RoseGraph &g, ProgramBuild &prog_build,
         return;
     }
 
-    program.add_before_end(make_unique<RoseInstrSetGroups>(groups));
+    program.add_before_end(ue2::make_unique<RoseInstrSetGroups>(groups));
 }
 
 static
@@ -964,7 +964,7 @@ bool makeRoleByte(const vector<LookEntry> &look, RoseProgram &program) {
         s32 checkbyte_offset = verify_s32(entry.offset);
         DEBUG_PRINTF("CHECK BYTE offset=%d\n", checkbyte_offset);
         const auto *end_inst = program.end_instruction();
-        auto ri = make_unique<RoseInstrCheckByte>(andmask_u8, cmpmask_u8, flip,
+        auto ri = ue2::make_unique<RoseInstrCheckByte>(andmask_u8, cmpmask_u8, flip,
                                                   checkbyte_offset, end_inst);
         program.add_before_end(move(ri));
         return true;
@@ -996,7 +996,7 @@ bool makeRoleMask(const vector<LookEntry> &look, RoseProgram &program) {
         DEBUG_PRINTF("CHECK MASK and_mask=%llx cmp_mask=%llx\n",
                      and_mask, cmp_mask);
         const auto *end_inst = program.end_instruction();
-        auto ri = make_unique<RoseInstrCheckMask>(and_mask, cmp_mask, neg_mask,
+        auto ri = ue2::make_unique<RoseInstrCheckMask>(and_mask, cmp_mask, neg_mask,
                                                   base_offset, end_inst);
         program.add_before_end(move(ri));
         return true;
@@ -1051,7 +1051,7 @@ bool makeRoleMask32(const vector<LookEntry> &look,
     DEBUG_PRINTF("base_offset %d\n", base_offset);
 
     const auto *end_inst = program.end_instruction();
-    auto ri = make_unique<RoseInstrCheckMask32>(and_mask, cmp_mask, neg_mask,
+    auto ri = ue2::make_unique<RoseInstrCheckMask32>(and_mask, cmp_mask, neg_mask,
                                                 base_offset, end_inst);
     program.add_before_end(move(ri));
     return true;
@@ -1187,7 +1187,7 @@ makeCheckShufti16x8(u32 offset_range, u8 bucket_idx,
     copy(hi_mask.begin(), hi_mask.begin() + 16, nib_mask.begin() + 16);
     copy(bucket_select_mask.begin(), bucket_select_mask.begin() + 16,
          bucket_select_mask_16.begin());
-    return make_unique<RoseInstrCheckShufti16x8>
+    return ue2::make_unique<RoseInstrCheckShufti16x8>
            (nib_mask, bucket_select_mask_16,
             neg_mask & 0xffff, base_offset, end_inst);
 }
@@ -1207,7 +1207,7 @@ makeCheckShufti32x8(u32 offset_range, u8 bucket_idx,
     array<u8, 16> lo_mask_16;
     copy(hi_mask.begin(), hi_mask.begin() + 16, hi_mask_16.begin());
     copy(lo_mask.begin(), lo_mask.begin() + 16, lo_mask_16.begin());
-    return make_unique<RoseInstrCheckShufti32x8>
+    return ue2::make_unique<RoseInstrCheckShufti32x8>
            (hi_mask_16, lo_mask_16, bucket_select_mask,
             neg_mask, base_offset, end_inst);
 }
@@ -1229,7 +1229,7 @@ makeCheckShufti16x16(u32 offset_range, u8 bucket_idx,
          bucket_select_mask_32.begin());
     copy(bucket_select_mask_hi.begin(), bucket_select_mask_hi.begin() + 16,
          bucket_select_mask_32.begin() + 16);
-    return make_unique<RoseInstrCheckShufti16x16>
+    return ue2::make_unique<RoseInstrCheckShufti16x16>
            (hi_mask, lo_mask, bucket_select_mask_32,
             neg_mask & 0xffff, base_offset, end_inst);
 }
@@ -1245,7 +1245,7 @@ makeCheckShufti32x16(u32 offset_range, u8 bucket_idx,
         return nullptr;
     }
 
-    return make_unique<RoseInstrCheckShufti32x16>
+    return ue2::make_unique<RoseInstrCheckShufti32x16>
            (hi_mask, lo_mask, bucket_select_mask_hi,
             bucket_select_mask_lo, neg_mask, base_offset, end_inst);
 }
@@ -1327,7 +1327,7 @@ void makeLookaroundInstruction(const vector<LookEntry> &look,
     if (look.size() == 1) {
         s8 offset = look.begin()->offset;
         const CharReach &reach = look.begin()->reach;
-        auto ri = make_unique<RoseInstrCheckSingleLookaround>(offset, reach,
+        auto ri = ue2::make_unique<RoseInstrCheckSingleLookaround>(offset, reach,
                                                      program.end_instruction());
         program.add_before_end(move(ri));
         return;
@@ -1345,7 +1345,7 @@ void makeLookaroundInstruction(const vector<LookEntry> &look,
         return;
     }
 
-    auto ri = make_unique<RoseInstrCheckLookaround>(look,
+    auto ri = ue2::make_unique<RoseInstrCheckLookaround>(look,
                                                     program.end_instruction());
     program.add_before_end(move(ri));
 }
@@ -1421,7 +1421,7 @@ void makeCheckLitEarlyInstruction(const RoseBuildImpl &build, u32 lit_id,
 
     DEBUG_PRINTF("adding lit early check, min_offset=%u\n", min_offset);
     const auto *end = prog.end_instruction();
-    prog.add_before_end(make_unique<RoseInstrCheckLitEarly>(min_offset, end));
+    prog.add_before_end(ue2::make_unique<RoseInstrCheckLitEarly>(min_offset, end));
 }
 
 static
@@ -1432,7 +1432,7 @@ void makeGroupCheckInstruction(const RoseBuildImpl &build, u32 lit_id,
     if (!info.group_mask) {
         return;
     }
-    prog.add_before_end(make_unique<RoseInstrCheckGroups>(info.group_mask));
+    prog.add_before_end(ue2::make_unique<RoseInstrCheckGroups>(info.group_mask));
 }
 
 static
@@ -1599,7 +1599,7 @@ bool makeRoleMultipathShufti(const vector<vector<LookEntry>> &multi_look,
         copy(begin(lo_mask), begin(lo_mask) + 16, nib_mask.begin());
         copy(begin(hi_mask), begin(hi_mask) + 16, nib_mask.begin() + 16);
 
-        auto ri = make_unique<RoseInstrCheckMultipathShufti16x8>
+        auto ri = ue2::make_unique<RoseInstrCheckMultipathShufti16x8>
                   (nib_mask, bucket_select_lo, data_select_mask, hi_bits_mask,
                    lo_bits_mask, neg_mask, base_offset, last_start, end_inst);
         program.add_before_end(move(ri));
@@ -1608,20 +1608,20 @@ bool makeRoleMultipathShufti(const vector<vector<LookEntry>> &multi_look,
         assert(!(hi_bits_mask & ~0xffffffffULL));
         assert(!(lo_bits_mask & ~0xffffffffULL));
         if (bit_index <= 8) {
-            auto ri = make_unique<RoseInstrCheckMultipathShufti32x8>
+            auto ri = ue2::make_unique<RoseInstrCheckMultipathShufti32x8>
                       (hi_mask, lo_mask, bucket_select_lo, data_select_mask,
                        hi_bits_mask, lo_bits_mask, neg_mask, base_offset,
                        last_start, end_inst);
             program.add_before_end(move(ri));
         } else {
-            auto ri = make_unique<RoseInstrCheckMultipathShufti32x16>
+            auto ri = ue2::make_unique<RoseInstrCheckMultipathShufti32x16>
                       (hi_mask, lo_mask, bucket_select_hi, bucket_select_lo,
                        data_select_mask, hi_bits_mask, lo_bits_mask, neg_mask,
                        base_offset, last_start, end_inst);
             program.add_before_end(move(ri));
         }
     } else {
-        auto ri = make_unique<RoseInstrCheckMultipathShufti64>
+        auto ri = ue2::make_unique<RoseInstrCheckMultipathShufti64>
                   (hi_mask, lo_mask, bucket_select_lo, data_select_mask,
                    hi_bits_mask, lo_bits_mask, neg_mask, base_offset,
                    last_start, end_inst);
@@ -1693,7 +1693,7 @@ void makeRoleMultipathLookaround(const vector<vector<LookEntry>> &multi_look,
         ordered_look.emplace_back(multi_entry);
     }
 
-    auto ri = make_unique<RoseInstrMultipathLookaround>(move(ordered_look),
+    auto ri = ue2::make_unique<RoseInstrMultipathLookaround>(move(ordered_look),
                                                         last_start, start_mask,
                                                     program.end_instruction());
     program.add_before_end(move(ri));
@@ -1769,7 +1769,7 @@ void makeRoleSuffix(const RoseBuildImpl &build,
         event = MQE_TOP;
     }
 
-    prog.add_before_end(make_unique<RoseInstrTriggerSuffix>(queue, event));
+    prog.add_before_end(ue2::make_unique<RoseInstrTriggerSuffix>(queue, event));
 }
 
 static
@@ -1782,7 +1782,7 @@ void addInfixTriggerInstructions(vector<TriggerInfo> triggers,
     });
     for (const auto &ti : triggers) {
         prog.add_before_end(
-             make_unique<RoseInstrTriggerInfix>(ti.cancel, ti.queue, ti.event));
+             ue2::make_unique<RoseInstrTriggerInfix>(ti.cancel, ti.queue, ti.event));
     }
 }
 
@@ -1876,7 +1876,7 @@ static
 void addCheckOnlyEodInstruction(RoseProgram &prog) {
     DEBUG_PRINTF("only at eod\n");
     const auto *end_inst = prog.end_instruction();
-    prog.add_before_end(make_unique<RoseInstrCheckOnlyEod>(end_inst));
+    prog.add_before_end(ue2::make_unique<RoseInstrCheckOnlyEod>(end_inst));
 }
 
 static
@@ -2001,7 +2001,7 @@ void makeGroupSquashInstruction(const RoseBuildImpl &build, u32 lit_id,
     DEBUG_PRINTF("squashes 0x%llx\n", info.group_mask);
     assert(info.group_mask);
     /* Note: group_mask is negated. */
-    prog.add_before_end(make_unique<RoseInstrSquashGroups>(~info.group_mask));
+    prog.add_before_end(ue2::make_unique<RoseInstrSquashGroups>(~info.group_mask));
 }
 
 namespace {
@@ -2046,7 +2046,7 @@ RoseProgram assembleProgramBlocks(vector<RoseProgram> &&blocks_in) {
          * only set if a state has been. */
         if (!prog.empty() && reads_work_done_flag(block)) {
             RoseProgram clear_block;
-            clear_block.add_before_end(make_unique<RoseInstrClearWorkDone>());
+            clear_block.add_before_end(ue2::make_unique<RoseInstrClearWorkDone>());
             prog.add_block(move(clear_block));
         }
 
@@ -2206,7 +2206,7 @@ void makeCatchupMpv(const ReportManager &rm, bool needs_mpv_catchup,
         return;
     }
 
-    program.add_before_end(make_unique<RoseInstrCatchUpMpv>());
+    program.add_before_end(ue2::make_unique<RoseInstrCatchUpMpv>());
 }
 
 RoseProgram makeReportProgram(const RoseBuildImpl &build,
@@ -2239,7 +2239,7 @@ RoseProgram makeBoundaryProgram(const RoseBuildImpl &build,
 void addIncludedJumpProgram(RoseProgram &program, u32 child_offset,
                             u8 squash) {
     RoseProgram block;
-    block.add_before_end(make_unique<RoseInstrIncludedJump>(child_offset,
+    block.add_before_end(ue2::make_unique<RoseInstrIncludedJump>(child_offset,
                                                             squash));
     program.add_block(move(block));
 }
@@ -2250,7 +2250,7 @@ void addPredBlockSingle(u32 pred_state, RoseProgram &pred_block,
     // Prepend an instruction to check the pred state is on.
     const auto *end_inst = pred_block.end_instruction();
     pred_block.insert(begin(pred_block),
-                      make_unique<RoseInstrCheckState>(pred_state, end_inst));
+                      ue2::make_unique<RoseInstrCheckState>(pred_state, end_inst));
     program.add_block(move(pred_block));
 }
 
@@ -2265,7 +2265,7 @@ void addPredBlocksAny(map<u32, RoseProgram> &pred_blocks, u32 num_states,
     }
 
     const RoseInstruction *end_inst = sparse_program.end_instruction();
-    auto ri = make_unique<RoseInstrSparseIterAny>(num_states, keys, end_inst);
+    auto ri = ue2::make_unique<RoseInstrSparseIterAny>(num_states, keys, end_inst);
     sparse_program.add_before_end(move(ri));
 
     RoseProgram &block = pred_blocks.begin()->second;
@@ -2288,14 +2288,14 @@ void addPredBlocksMulti(map<u32, RoseProgram> &pred_blocks,
     vector<pair<u32, const RoseInstruction *>> jump_table;
 
     // BEGIN instruction.
-    auto ri_begin = make_unique<RoseInstrSparseIterBegin>(num_states, end_inst);
+    auto ri_begin = ue2::make_unique<RoseInstrSparseIterBegin>(num_states, end_inst);
     RoseInstrSparseIterBegin *begin_inst = ri_begin.get();
     sparse_program.add_before_end(move(ri_begin));
 
     // NEXT instructions, one per pred program.
     u32 prev_key = pred_blocks.begin()->first;
     for (auto it = next(begin(pred_blocks)); it != end(pred_blocks); ++it) {
-        auto ri = make_unique<RoseInstrSparseIterNext>(prev_key, begin_inst,
+        auto ri = ue2::make_unique<RoseInstrSparseIterNext>(prev_key, begin_inst,
                                                        end_inst);
         sparse_program.add_before_end(move(ri));
         prev_key = it->first;
@@ -2376,7 +2376,7 @@ void applyFinalSpecialisation(RoseProgram &program) {
     auto it = next(program.rbegin());
     if (auto *ri = dynamic_cast<const RoseInstrReport *>(it->get())) {
         DEBUG_PRINTF("replacing REPORT with FINAL_REPORT\n");
-        program.replace(it, make_unique<RoseInstrFinalReport>(
+        program.replace(it, ue2::make_unique<RoseInstrFinalReport>(
                                 ri->onmatch, ri->offset_adjust));
     }
 }
