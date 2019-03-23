@@ -239,10 +239,10 @@ static const short _ControlVerbs_eof_trans[] = {
 };
 
 static const int ControlVerbs_start = 75;
-static const int ControlVerbs_first_final = 75;
-static const int ControlVerbs_error = -1;
+//static const int ControlVerbs_first_final = 75;
+//static const int ControlVerbs_error = -1;
 
-static const int ControlVerbs_en_main = 75;
+//static const int ControlVerbs_en_main = 75;
 
 
 #line 249 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
