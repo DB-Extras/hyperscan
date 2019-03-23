@@ -6,12 +6,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EXTRA_CXX_FLAGS} ${HS_CXX_FLAGS}")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR})
 
-set_source_files_properties(
-    ${CMAKE_BINARY_DIR}/tools/ExpressionParser.cpp
-    PROPERTIES
-    COMPILE_FLAGS "${RAGEL_C_FLAGS}")
+# set_source_files_properties(
+#     ${CMAKE_BINARY_DIR}/tools/ExpressionParser.cpp
+#     PROPERTIES
+#     COMPILE_FLAGS "${RAGEL_C_FLAGS}")
 
-ragelmaker(ExpressionParser.rl)
+# ragelmaker(ExpressionParser.rl)
 
 set(expressionutil_SRCS
     expressions.cpp
@@ -20,7 +20,7 @@ set(expressionutil_SRCS
     ExpressionParser.cpp
     )
 add_library(expressionutil STATIC ${expressionutil_SRCS})
-add_dependencies(expressionutil ragel_ExpressionParser)
+# add_dependencies(expressionutil ragel_ExpressionParser)
 
 SET(corpusomatic_SRCS
     ng_corpus_editor.h
