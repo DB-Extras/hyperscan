@@ -3082,9 +3082,6 @@ hwlmcb_rv_t roseRunProgram_l(const struct RoseEngine *t,
             }
             L_PROGRAM_NEXT_INSTRUCTION
 
-            L_PROGRAM_CASE(CLEAR_WORK_DONE) {}
-            L_PROGRAM_NEXT_INSTRUCTION
-
             default: {
                 assert(0); // unreachable
                 scratch->core_info.status |= STATUS_ERROR;
