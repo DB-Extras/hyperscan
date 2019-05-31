@@ -1292,7 +1292,7 @@ unique_ptr<raw_report_info> gough_build_strat::gatherReports(
     *arbReport = MO_INVALID_IDX;
     assert(!ri->rl.empty()); /* all components should be able to generate
                                 reports */
-    return move(ri);
+    return ri;
 }
 
 u32 raw_gough_report_info_impl::getReportListSize() const {
