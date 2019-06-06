@@ -5592,7 +5592,7 @@ _again:
         // Ensure that all references are valid.
         checkReferences(*rootSeq, groupIndex, groupNames);
 
-        return move(rootSeq);
+        return rootSeq;
     } catch (LocatedParseError &error) {
         if (ts >= ptr && ts <= pe) {
             error.locate(ts - ptr);
