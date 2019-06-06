@@ -1,5 +1,5 @@
 
-#line 1 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1 "Parser.rl"
 /*
  * Copyright (c) 2015-2017, Intel Corporation
  *
@@ -274,11 +274,11 @@ unichar readUtf8CodePoint4c(const char *s) {
 }
 
 
-#line 1910 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1910 "Parser.rl"
 
 
 
-#line 282 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 282 "Parser.cpp"
 static const short _regex_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
 	3, 1, 4, 1, 7, 1, 8, 1, 
@@ -2458,7 +2458,7 @@ static const int regex_en_readNewlineTerminatedComment = 849;
 static const int regex_en_main = 746;
 
 
-#line 1913 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1913 "Parser.rl"
 
 /** \brief Main parser call, returns root Component or nullptr. */
 unique_ptr<Component> parse(const char *ptr, ParseMode &globalMode) {
@@ -2530,7 +2530,7 @@ unique_ptr<Component> parse(const char *ptr, ParseMode &globalMode) {
     try {
         // Embed the Ragel machine here
         
-#line 2534 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 2534 "Parser.cpp"
 	{
 	cs = regex_start;
 	top = 0;
@@ -2539,9 +2539,9 @@ unique_ptr<Component> parse(const char *ptr, ParseMode &globalMode) {
 	act = 0;
 	}
 
-#line 1984 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1984 "Parser.rl"
         
-#line 2545 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 2545 "Parser.cpp"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -2563,7 +2563,7 @@ _resume:
 #line 1 "NONE"
 	{ts = p;}
 	break;
-#line 2567 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 2567 "Parser.cpp"
 		}
 	}
 
@@ -2588,21 +2588,21 @@ _resume:
 	case 0: {
 		_widec = (short)(128 + ((*p) - -128));
 		if ( 
-#line 476 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 476 "Parser.rl"
  mode.utf8  ) _widec += 256;
 		break;
 	}
 	case 1: {
 		_widec = (short)(1152 + ((*p) - -128));
 		if ( 
-#line 477 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 477 "Parser.rl"
  mode.ignore_space  ) _widec += 256;
 		break;
 	}
 	case 2: {
 		_widec = (short)(640 + ((*p) - -128));
 		if ( 
-#line 478 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 478 "Parser.rl"
  inCharClassEarly  ) _widec += 256;
 		break;
 	}
@@ -2675,84 +2675,84 @@ _eof_trans:
 		switch ( *_acts++ )
 		{
 	case 0:
-#line 286 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 286 "Parser.rl"
 	{ label.clear();}
 	break;
 	case 1:
-#line 287 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 287 "Parser.rl"
 	{ label.push_back((*p));}
 	break;
 	case 2:
-#line 288 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 288 "Parser.rl"
 	{ octAccumulator = 0;}
 	break;
 	case 3:
-#line 289 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 289 "Parser.rl"
 	{ accumulator = 0;}
 	break;
 	case 4:
-#line 290 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 290 "Parser.rl"
 	{
         octAccumulator = 0;
         pushOct(&octAccumulator, (*p));
     }
 	break;
 	case 5:
-#line 294 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 294 "Parser.rl"
 	{
         accumulator = 0;
         pushDec(&accumulator, (*p));
     }
 	break;
 	case 6:
-#line 298 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 298 "Parser.rl"
 	{ repeatN = 0; repeatM = 0; }
 	break;
 	case 7:
-#line 299 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 299 "Parser.rl"
 	{ pushDec(&repeatN, (*p)); }
 	break;
 	case 8:
-#line 300 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 300 "Parser.rl"
 	{ pushDec(&repeatM, (*p)); }
 	break;
 	case 9:
-#line 301 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 301 "Parser.rl"
 	{ pushOct(&octAccumulator, (*p)); }
 	break;
 	case 10:
-#line 302 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 302 "Parser.rl"
 	{ pushDec(&accumulator, (*p)); }
 	break;
 	case 11:
-#line 303 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 303 "Parser.rl"
 	{
         accumulator *= 16;
         accumulator += (*p) - '0';
     }
 	break;
 	case 12:
-#line 307 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 307 "Parser.rl"
 	{
         accumulator *= 16;
         accumulator += 10 + (*p) - 'a';
     }
 	break;
 	case 13:
-#line 311 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 311 "Parser.rl"
 	{
         accumulator *= 16;
         accumulator += 10 + (*p) - 'A';
     }
 	break;
 	case 14:
-#line 431 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 431 "Parser.rl"
 	{
         newMode = mode;
     }
 	break;
 	case 15:
-#line 438 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 438 "Parser.rl"
 	{
         switch ((*p)) {
             case 'i':
@@ -2774,7 +2774,7 @@ _eof_trans:
     }
 	break;
 	case 16:
-#line 457 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 457 "Parser.rl"
 	{
         switch ((*p)) {
             case 'i':
@@ -2796,19 +2796,19 @@ _eof_trans:
     }
 	break;
 	case 17:
-#line 511 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 511 "Parser.rl"
 	{repeatM = repeatN;}
 	break;
 	case 18:
-#line 511 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 511 "Parser.rl"
 	{repeatM = ComponentRepeat::NoLimit;}
 	break;
 	case 19:
-#line 723 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 723 "Parser.rl"
 	{ negated = !negated; }
 	break;
 	case 20:
-#line 724 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 724 "Parser.rl"
 	{ p--; {
         DEBUG_PRINTF("stack %zu top %d\n", stack.size(), top);
         if ((int)stack.size() == top) {
@@ -2817,7 +2817,7 @@ _eof_trans:
     {stack[top++] = cs; cs = 790; goto _again;}} }
 	break;
 	case 21:
-#line 725 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 725 "Parser.rl"
 	{ if (!inCharClass) { // not inside [..]
                                  currentCls->finalize();
                                  currentSeq->addComponent(move(currentCls));
@@ -2826,7 +2826,7 @@ _eof_trans:
                            }
 	break;
 	case 22:
-#line 731 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 731 "Parser.rl"
 	{ throw LocatedParseError("Malformed property"); }
 	break;
 	case 25:
@@ -2834,28 +2834,28 @@ _eof_trans:
 	{te = p+1;}
 	break;
 	case 26:
-#line 551 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 551 "Parser.rl"
 	{te = p+1;{
             throw LocatedParseError("(*UTF8) must be at start of "
                                     "expression, encountered");
         }}
 	break;
 	case 27:
-#line 555 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 555 "Parser.rl"
 	{te = p+1;{
             throw LocatedParseError("(*UTF) must be at start of "
                                     "expression, encountered");
         }}
 	break;
 	case 28:
-#line 559 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 559 "Parser.rl"
 	{te = p+1;{
             throw LocatedParseError("(*UCP) must be at start of "
                                     "expression, encountered");
         }}
 	break;
 	case 29:
-#line 565 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 565 "Parser.rl"
 	{te = p+1;{
             ParseMode temp_mode;
             assert(ts - 2 >= ptr); // parser needs the '(*' at the start too.
@@ -2865,625 +2865,625 @@ _eof_trans:
         }}
 	break;
 	case 30:
-#line 572 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 572 "Parser.rl"
 	{te = p+1;{
             throw LocatedParseError("Unknown control verb");
         }}
 	break;
 	case 31:
-#line 572 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 572 "Parser.rl"
 	{te = p;p--;{
             throw LocatedParseError("Unknown control verb");
         }}
 	break;
 	case 32:
-#line 572 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 572 "Parser.rl"
 	{{p = ((te))-1;}{
             throw LocatedParseError("Unknown control verb");
         }}
 	break;
 	case 33:
-#line 582 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 582 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_CC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 34:
-#line 583 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 583 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_CF, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 35:
-#line 584 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 584 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_CN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 36:
-#line 586 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 586 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_CS, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 37:
-#line 588 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 588 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_LL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 38:
-#line 589 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 589 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_LM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 39:
-#line 590 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 590 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_LO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 40:
-#line 591 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 591 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_LT, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 41:
-#line 592 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 592 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_LU, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 42:
-#line 593 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 593 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_L_AND, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 43:
-#line 595 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 595 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_MC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 44:
-#line 597 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 597 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_MN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 45:
-#line 599 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 599 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_ND, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 46:
-#line 600 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 600 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_NL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 47:
-#line 601 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 601 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_NO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 48:
-#line 603 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 603 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 49:
-#line 604 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 604 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PD, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 50:
-#line 605 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 605 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 51:
-#line 606 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 606 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PF, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 52:
-#line 607 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 607 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 53:
-#line 608 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 608 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 54:
-#line 609 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 609 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_PS, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 55:
-#line 611 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 611 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_SC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 56:
-#line 612 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 612 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_SK, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 57:
-#line 613 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 613 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_SM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 58:
-#line 614 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 614 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_SO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 59:
-#line 616 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 616 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_ZL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 60:
-#line 617 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 617 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_ZP, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 61:
-#line 618 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 618 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_ZS, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 62:
-#line 619 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 619 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_XAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 63:
-#line 620 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 620 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_XPS, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 64:
-#line 621 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 621 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_XSP, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 65:
-#line 622 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 622 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_XWD, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 66:
-#line 623 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 623 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_ARABIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 67:
-#line 624 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 624 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_ARMENIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 68:
-#line 625 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 625 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_AVESTAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 69:
-#line 626 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 626 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BALINESE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 70:
-#line 627 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 627 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BAMUM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 71:
-#line 628 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 628 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BATAK, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 72:
-#line 629 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 629 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BENGALI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 73:
-#line 630 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 630 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BOPOMOFO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 74:
-#line 631 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 631 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BRAHMI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 75:
-#line 632 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 632 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BRAILLE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 76:
-#line 633 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 633 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BUGINESE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 77:
-#line 634 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 634 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_BUHID, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 78:
-#line 635 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 635 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CANADIAN_ABORIGINAL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 79:
-#line 636 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 636 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CARIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 80:
-#line 637 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 637 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CHAM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 81:
-#line 638 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 638 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CHEROKEE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 82:
-#line 639 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 639 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_COMMON, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 83:
-#line 640 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 640 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_COPTIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 84:
-#line 641 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 641 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CUNEIFORM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 85:
-#line 642 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 642 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CYPRIOT, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 86:
-#line 643 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 643 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_CYRILLIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 87:
-#line 644 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 644 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_DESERET, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 88:
-#line 645 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 645 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_DEVANAGARI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 89:
-#line 646 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 646 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_EGYPTIAN_HIEROGLYPHS, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 90:
-#line 647 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 647 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_ETHIOPIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 91:
-#line 648 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 648 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GEORGIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 92:
-#line 649 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 649 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GLAGOLITIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 93:
-#line 650 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 650 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GOTHIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 94:
-#line 651 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 651 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GREEK, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 95:
-#line 652 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 652 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GUJARATI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 96:
-#line 653 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 653 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_GURMUKHI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 97:
-#line 655 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 655 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_HANGUL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 98:
-#line 656 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 656 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_HANUNOO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 99:
-#line 657 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 657 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_HEBREW, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 100:
-#line 658 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 658 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_HIRAGANA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 101:
-#line 659 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 659 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_IMPERIAL_ARAMAIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 102:
-#line 660 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 660 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_INHERITED, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 103:
-#line 661 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 661 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_INSCRIPTIONAL_PAHLAVI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 104:
-#line 662 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 662 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_INSCRIPTIONAL_PARTHIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 105:
-#line 663 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 663 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_JAVANESE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 106:
-#line 664 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 664 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KAITHI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 107:
-#line 665 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 665 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KANNADA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 108:
-#line 666 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 666 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KATAKANA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 109:
-#line 667 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 667 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KAYAH_LI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 110:
-#line 668 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 668 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KHAROSHTHI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 111:
-#line 669 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 669 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_KHMER, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 112:
-#line 670 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 670 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LAO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 113:
-#line 671 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 671 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LATIN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 114:
-#line 672 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 672 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LEPCHA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 115:
-#line 673 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 673 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LIMBU, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 116:
-#line 674 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 674 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LINEAR_B, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 117:
-#line 675 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 675 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LISU, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 118:
-#line 676 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 676 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LYCIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 119:
-#line 677 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 677 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_LYDIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 120:
-#line 678 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 678 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_MALAYALAM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 121:
-#line 679 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 679 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_MANDAIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 122:
-#line 680 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 680 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_MEETEI_MAYEK, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 123:
-#line 681 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 681 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_MONGOLIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 124:
-#line 682 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 682 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_MYANMAR, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 125:
-#line 683 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 683 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_NEW_TAI_LUE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 126:
-#line 684 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 684 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_NKO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 127:
-#line 685 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 685 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OGHAM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 128:
-#line 686 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 686 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OL_CHIKI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 129:
-#line 687 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 687 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OLD_ITALIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 130:
-#line 688 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 688 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OLD_PERSIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 131:
-#line 689 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 689 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OLD_SOUTH_ARABIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 132:
-#line 690 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 690 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OLD_TURKIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 133:
-#line 691 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 691 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_ORIYA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 134:
-#line 692 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 692 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_OSMANYA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 135:
-#line 693 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 693 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_PHAGS_PA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 136:
-#line 694 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 694 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_PHOENICIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 137:
-#line 695 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 695 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_REJANG, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 138:
-#line 696 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 696 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_RUNIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 139:
-#line 697 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 697 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SAMARITAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 140:
-#line 698 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 698 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SAURASHTRA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 141:
-#line 699 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 699 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SHAVIAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 142:
-#line 700 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 700 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SINHALA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 143:
-#line 701 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 701 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SUNDANESE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 144:
-#line 702 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 702 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SYLOTI_NAGRI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 145:
-#line 703 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 703 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_SYRIAC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 146:
-#line 704 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 704 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAGALOG, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 147:
-#line 705 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 705 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAGBANWA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 148:
-#line 706 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 706 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAI_LE, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 149:
-#line 707 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 707 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAI_THAM, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 150:
-#line 708 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 708 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAI_VIET, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 151:
-#line 709 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 709 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TAMIL, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 152:
-#line 710 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 710 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TELUGU, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 153:
-#line 711 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 711 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_THAANA, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 154:
-#line 712 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 712 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_THAI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 155:
-#line 713 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 713 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TIBETAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 156:
-#line 714 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 714 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_TIFINAGH, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 157:
-#line 715 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 715 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_UGARITIC, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 158:
-#line 716 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 716 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_VAI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 159:
-#line 717 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 717 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_SCRIPT_YI, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 160:
-#line 718 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 718 "Parser.rl"
 	{te = p+1;{ currentCls->add(CLASS_UCP_ANY, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 161:
-#line 719 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 719 "Parser.rl"
 	{te = p+1;{ throw LocatedParseError("Unknown property"); }}
 	break;
 	case 162:
-#line 581 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 581 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_C, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 163:
-#line 585 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 585 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_CO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 164:
-#line 587 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 587 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_L, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 165:
-#line 594 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 594 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_M, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 166:
-#line 596 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 596 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_ME, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 167:
-#line 598 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 598 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_N, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 168:
-#line 602 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 602 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_P, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 169:
-#line 610 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 610 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_S, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 170:
-#line 615 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 615 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_UCP_Z, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 171:
-#line 654 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 654 "Parser.rl"
 	{te = p;p--;{ currentCls->add(CLASS_SCRIPT_HAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 172:
-#line 719 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 719 "Parser.rl"
 	{te = p;p--;{ throw LocatedParseError("Unknown property"); }}
 	break;
 	case 173:
-#line 581 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 581 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_C, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 174:
-#line 585 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 585 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_CO, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 175:
-#line 587 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 587 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_L, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 176:
-#line 594 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 594 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_M, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 177:
-#line 596 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 596 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_ME, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 178:
-#line 598 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 598 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_N, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 179:
-#line 602 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 602 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_P, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 180:
-#line 610 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 610 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_UCP_S, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 181:
-#line 654 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 654 "Parser.rl"
 	{{p = ((te))-1;}{ currentCls->add(CLASS_SCRIPT_HAN, negated); {cs = stack[--top]; goto _again;} }}
 	break;
 	case 182:
-#line 719 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 719 "Parser.rl"
 	{{p = ((te))-1;}{ throw LocatedParseError("Unknown property"); }}
 	break;
 	case 183:
-#line 734 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 734 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_C, negated); 
             if (!inCharClass) {
@@ -3494,7 +3494,7 @@ _eof_trans:
         }}
 	break;
 	case 184:
-#line 742 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 742 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_L, negated); 
             if (!inCharClass) {
@@ -3505,7 +3505,7 @@ _eof_trans:
         }}
 	break;
 	case 185:
-#line 750 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 750 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_M, negated); 
             if (!inCharClass) {
@@ -3516,7 +3516,7 @@ _eof_trans:
         }}
 	break;
 	case 186:
-#line 758 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 758 "Parser.rl"
 	{te = p+1;{
             currentCls->add(CLASS_UCP_N, negated); 
             if (!inCharClass) {
@@ -3527,7 +3527,7 @@ _eof_trans:
         }}
 	break;
 	case 187:
-#line 766 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 766 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_P, negated); 
             if (!inCharClass) {
@@ -3538,7 +3538,7 @@ _eof_trans:
         }}
 	break;
 	case 188:
-#line 774 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 774 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_S, negated); 
             if (!inCharClass) {
@@ -3549,7 +3549,7 @@ _eof_trans:
         }}
 	break;
 	case 189:
-#line 782 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 782 "Parser.rl"
 	{te = p+1;{ 
             currentCls->add(CLASS_UCP_Z, negated); 
             if (!inCharClass) {
@@ -3560,192 +3560,192 @@ _eof_trans:
         }}
 	break;
 	case 190:
-#line 791 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 791 "Parser.rl"
 	{te = p+1;{ throw LocatedParseError("Unknown property"); }}
 	break;
 	case 191:
-#line 797 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 797 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("Unsupported POSIX collating "
                                           "element");
               }}
 	break;
 	case 192:
-#line 804 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 804 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ALNUM, false);
               }}
 	break;
 	case 193:
-#line 807 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 807 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ALNUM, true);
               }}
 	break;
 	case 194:
-#line 810 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 810 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ALPHA, false);
               }}
 	break;
 	case 195:
-#line 813 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 813 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ALPHA, true);
               }}
 	break;
 	case 196:
-#line 816 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 816 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ASCII, false);
               }}
 	break;
 	case 197:
-#line 819 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 819 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_ASCII, true);
               }}
 	break;
 	case 198:
-#line 822 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 822 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_BLANK, false);
               }}
 	break;
 	case 199:
-#line 825 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 825 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_BLANK, true);
               }}
 	break;
 	case 200:
-#line 828 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 828 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_CNTRL, false);
               }}
 	break;
 	case 201:
-#line 831 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 831 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_CNTRL, true);
               }}
 	break;
 	case 202:
-#line 834 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 834 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_DIGIT, false);
               }}
 	break;
 	case 203:
-#line 837 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 837 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_DIGIT, true);
               }}
 	break;
 	case 204:
-#line 840 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 840 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_GRAPH, false);
               }}
 	break;
 	case 205:
-#line 843 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 843 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_GRAPH, true);
               }}
 	break;
 	case 206:
-#line 846 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 846 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_LOWER, false);
               }}
 	break;
 	case 207:
-#line 849 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 849 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_LOWER, true);
               }}
 	break;
 	case 208:
-#line 852 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 852 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_PRINT, false);
               }}
 	break;
 	case 209:
-#line 855 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 855 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_PRINT, true);
               }}
 	break;
 	case 210:
-#line 858 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 858 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_PUNCT, false);
               }}
 	break;
 	case 211:
-#line 861 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 861 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_PUNCT, true);
               }}
 	break;
 	case 212:
-#line 865 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 865 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_SPACE, false);
               }}
 	break;
 	case 213:
-#line 868 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 868 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_SPACE, true);
               }}
 	break;
 	case 214:
-#line 871 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 871 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_UPPER, false);
               }}
 	break;
 	case 215:
-#line 874 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 874 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_UPPER, true);
               }}
 	break;
 	case 216:
-#line 877 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 877 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_WORD, false);
               }}
 	break;
 	case 217:
-#line 880 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 880 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_WORD, true);
               }}
 	break;
 	case 218:
-#line 883 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 883 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_XDIGIT, false);
               }}
 	break;
 	case 219:
-#line 886 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 886 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_XDIGIT, true);
               }}
 	break;
 	case 220:
-#line 891 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 891 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("Invalid POSIX named class");
               }}
 	break;
 	case 221:
-#line 894 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 894 "Parser.rl"
 	{te = p+1;{
                   {
         DEBUG_PRINTF("stack %zu top %d\n", stack.size(), top);
@@ -3756,77 +3756,77 @@ _eof_trans:
               }}
 	break;
 	case 222:
-#line 897 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 897 "Parser.rl"
 	{te = p+1;{ /*noop*/}}
 	break;
 	case 223:
-#line 899 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 899 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x08');
               }}
 	break;
 	case 224:
-#line 903 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 903 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x09');
               }}
 	break;
 	case 225:
-#line 907 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 907 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x0a');
               }}
 	break;
 	case 226:
-#line 911 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 911 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x0d');
               }}
 	break;
 	case 227:
-#line 915 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 915 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x0c');
               }}
 	break;
 	case 228:
-#line 919 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 919 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x07');
               }}
 	break;
 	case 229:
-#line 923 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 923 "Parser.rl"
 	{te = p+1;{
                   currentCls->add('\x1b');
               }}
 	break;
 	case 230:
-#line 927 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 927 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_HORZ, false);
               }}
 	break;
 	case 231:
-#line 931 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 931 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_HORZ, true);
               }}
 	break;
 	case 232:
-#line 935 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 935 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_VERT, false);
               }}
 	break;
 	case 233:
-#line 939 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 939 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_VERT, true);
               }}
 	break;
 	case 234:
-#line 943 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 943 "Parser.rl"
 	{te = p+1;{
                   negated = false;
                   p--;
@@ -3839,7 +3839,7 @@ _eof_trans:
               }}
 	break;
 	case 235:
-#line 949 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 949 "Parser.rl"
 	{te = p+1;{
                   negated = false;
                   p--;
@@ -3852,7 +3852,7 @@ _eof_trans:
               }}
 	break;
 	case 236:
-#line 955 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 955 "Parser.rl"
 	{te = p+1;{
                   negated = true;
                   p--;
@@ -3865,7 +3865,7 @@ _eof_trans:
               }}
 	break;
 	case 237:
-#line 961 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 961 "Parser.rl"
 	{te = p+1;{
                   negated = true;
                   p--;
@@ -3878,19 +3878,19 @@ _eof_trans:
               }}
 	break;
 	case 238:
-#line 971 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 971 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(octAccumulator);
               }}
 	break;
 	case 239:
-#line 974 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 974 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(octAccumulator);
               }}
 	break;
 	case 240:
-#line 978 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 978 "Parser.rl"
 	{te = p+1;{
                   string oct(ts + 3, te - ts - 4);
                   unsigned long val;
@@ -3906,13 +3906,13 @@ _eof_trans:
               }}
 	break;
 	case 241:
-#line 998 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 998 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(accumulator);
               }}
 	break;
 	case 242:
-#line 1002 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1002 "Parser.rl"
 	{te = p+1;{
                   // whatever we found here
                   currentCls->add(*(ts + 1));
@@ -3920,7 +3920,7 @@ _eof_trans:
               }}
 	break;
 	case 243:
-#line 1008 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1008 "Parser.rl"
 	{te = p+1;{
                   string hex(ts + 3, te - ts - 4);
                   unsigned long val;
@@ -3936,7 +3936,7 @@ _eof_trans:
               }}
 	break;
 	case 244:
-#line 1026 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1026 "Parser.rl"
 	{te = p+1;{
                   if (te - ts < 3) {
                       assert(te - ts == 2);
@@ -3948,49 +3948,49 @@ _eof_trans:
               }}
 	break;
 	case 245:
-#line 1036 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1036 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_WORD, false);
               }}
 	break;
 	case 246:
-#line 1040 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1040 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_WORD, true);
               }}
 	break;
 	case 247:
-#line 1044 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1044 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_SPACE, false);
               }}
 	break;
 	case 248:
-#line 1048 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1048 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_SPACE, true);
               }}
 	break;
 	case 249:
-#line 1052 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1052 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_DIGIT, false);
               }}
 	break;
 	case 250:
-#line 1056 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1056 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(CLASS_DIGIT, true);
               }}
 	break;
 	case 251:
-#line 1059 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1059 "Parser.rl"
 	{te = p+1;{
                   currentCls->addDash();
               }}
 	break;
 	case 252:
-#line 277 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 277 "Parser.rl"
 	{te = p+1;{
         ostringstream str;
         str << "'\\" << *(ts + 1) << "' at index " << ts - ptr
@@ -3999,7 +3999,7 @@ _eof_trans:
     }}
 	break;
 	case 253:
-#line 277 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 277 "Parser.rl"
 	{te = p+1;{
         ostringstream str;
         str << "'\\" << *(ts + 1) << "' at index " << ts - ptr
@@ -4008,7 +4008,7 @@ _eof_trans:
     }}
 	break;
 	case 254:
-#line 277 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 277 "Parser.rl"
 	{te = p+1;{
         ostringstream str;
         str << "'\\" << *(ts + 1) << "' at index " << ts - ptr
@@ -4017,48 +4017,48 @@ _eof_trans:
     }}
 	break;
 	case 255:
-#line 1076 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1076 "Parser.rl"
 	{te = p+1;{
                   // add the literal char
                   currentCls->add(*(ts + 1));
               }}
 	break;
 	case 256:
-#line 1082 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1082 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint2c(ts));
               }}
 	break;
 	case 257:
-#line 1087 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1087 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint3c(ts));
               }}
 	break;
 	case 258:
-#line 1092 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1092 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint4c(ts));
               }}
 	break;
 	case 259:
-#line 1097 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1097 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 260:
-#line 1103 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1103 "Parser.rl"
 	{te = p+1;{
                   currentCls->add((u8)*ts);
               }}
 	break;
 	case 261:
-#line 1107 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1107 "Parser.rl"
 	{te = p+1;{
                   currentCls->finalize();
                   currentSeq->addComponent(move(currentCls));
@@ -4067,45 +4067,45 @@ _eof_trans:
               }}
 	break;
 	case 262:
-#line 967 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 967 "Parser.rl"
 	{te = p;p--;{ throw LocatedParseError("Malformed property"); }}
 	break;
 	case 263:
-#line 968 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 968 "Parser.rl"
 	{te = p;p--;{ throw LocatedParseError("Malformed property"); }}
 	break;
 	case 264:
-#line 971 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 971 "Parser.rl"
 	{te = p;p--;{
                   currentCls->add(octAccumulator);
               }}
 	break;
 	case 265:
-#line 974 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 974 "Parser.rl"
 	{te = p;p--;{
                   currentCls->add(octAccumulator);
               }}
 	break;
 	case 266:
-#line 993 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 993 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Value in \\o{...} sequence is non-octal or missing braces");
               }}
 	break;
 	case 267:
-#line 998 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 998 "Parser.rl"
 	{te = p;p--;{
                   currentCls->add(accumulator);
               }}
 	break;
 	case 268:
-#line 1022 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1022 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Value in \\x{...} sequence is non-hex or missing }");
               }}
 	break;
 	case 269:
-#line 1026 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1026 "Parser.rl"
 	{te = p;p--;{
                   if (te - ts < 3) {
                       assert(te - ts == 2);
@@ -4117,45 +4117,45 @@ _eof_trans:
               }}
 	break;
 	case 270:
-#line 1097 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1097 "Parser.rl"
 	{te = p;p--;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 271:
-#line 1103 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1103 "Parser.rl"
 	{te = p;p--;{
                   currentCls->add((u8)*ts);
               }}
 	break;
 	case 272:
-#line 993 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 993 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Value in \\o{...} sequence is non-octal or missing braces");
               }}
 	break;
 	case 273:
-#line 1022 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1022 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Value in \\x{...} sequence is non-hex or missing }");
               }}
 	break;
 	case 274:
-#line 1097 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1097 "Parser.rl"
 	{{p = ((te))-1;}{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 275:
-#line 1103 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1103 "Parser.rl"
 	{{p = ((te))-1;}{
                   currentCls->add((u8)*ts);
               }}
 	break;
 	case 276:
-#line 1121 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1121 "Parser.rl"
 	{te = p+1;{
             if (currentCls->isNegated()) {
                 // Already seen a caret; the second one is not a meta-character.
@@ -4169,14 +4169,14 @@ _eof_trans:
         }}
 	break;
 	case 277:
-#line 1134 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1134 "Parser.rl"
 	{te = p+1;{
             currentCls->add(']');
             inCharClassEarly = false;
         }}
 	break;
 	case 278:
-#line 1139 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1139 "Parser.rl"
 	{te = p+1;{ {
         DEBUG_PRINTF("stack %zu top %d\n", stack.size(), top);
         if ((int)stack.size() == top) {
@@ -4185,11 +4185,11 @@ _eof_trans:
     {stack[top++] = cs; cs = 843; goto _again;}} }}
 	break;
 	case 279:
-#line 1140 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1140 "Parser.rl"
 	{te = p+1;{ /*noop*/}}
 	break;
 	case 280:
-#line 1143 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1143 "Parser.rl"
 	{te = p+1;{
             inCharClassEarly = false;
             p--;
@@ -4197,7 +4197,7 @@ _eof_trans:
         }}
 	break;
 	case 281:
-#line 1143 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1143 "Parser.rl"
 	{te = p;p--;{
             inCharClassEarly = false;
             p--;
@@ -4205,13 +4205,13 @@ _eof_trans:
         }}
 	break;
 	case 282:
-#line 1155 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1155 "Parser.rl"
 	{te = p+1;{
                   {cs = 746; goto _again;}
               }}
 	break;
 	case 283:
-#line 1160 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1160 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -4222,7 +4222,7 @@ _eof_trans:
               }}
 	break;
 	case 284:
-#line 1169 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1169 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -4233,7 +4233,7 @@ _eof_trans:
               }}
 	break;
 	case 285:
-#line 1178 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1178 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -4244,46 +4244,46 @@ _eof_trans:
               }}
 	break;
 	case 286:
-#line 1187 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1187 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 287:
-#line 1193 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1193 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, *ts, mode);
               }}
 	break;
 	case 288:
-#line 1187 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1187 "Parser.rl"
 	{te = p;p--;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 289:
-#line 1193 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1193 "Parser.rl"
 	{te = p;p--;{
                   addLiteral(currentSeq, *ts, mode);
               }}
 	break;
 	case 290:
-#line 1187 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1187 "Parser.rl"
 	{{p = ((te))-1;}{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 291:
-#line 1203 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1203 "Parser.rl"
 	{te = p+1;{
                   {cs = stack[--top]; goto _again;}
               }}
 	break;
 	case 292:
-#line 1208 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1208 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint2c(ts));
@@ -4291,7 +4291,7 @@ _eof_trans:
               }}
 	break;
 	case 293:
-#line 1214 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1214 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint3c(ts));
@@ -4299,7 +4299,7 @@ _eof_trans:
               }}
 	break;
 	case 294:
-#line 1220 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1220 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   currentCls->add(readUtf8CodePoint4c(ts));
@@ -4307,70 +4307,70 @@ _eof_trans:
               }}
 	break;
 	case 295:
-#line 1226 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1226 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 296:
-#line 1232 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1232 "Parser.rl"
 	{te = p+1;{
                   currentCls->add(*ts);
                   inCharClassEarly = false;
               }}
 	break;
 	case 297:
-#line 1226 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1226 "Parser.rl"
 	{te = p;p--;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 298:
-#line 1232 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1232 "Parser.rl"
 	{te = p;p--;{
                   currentCls->add(*ts);
                   inCharClassEarly = false;
               }}
 	break;
 	case 299:
-#line 1226 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1226 "Parser.rl"
 	{{p = ((te))-1;}{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 300:
-#line 1244 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1244 "Parser.rl"
 	{te = p+1;{ inComment = false; {cs = 746; goto _again;} }}
 	break;
 	case 301:
-#line 1248 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1248 "Parser.rl"
 	{te = p+1;}
 	break;
 	case 302:
-#line 1256 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1256 "Parser.rl"
 	{te = p+1;{ inComment = false; {cs = 746; goto _again;} }}
 	break;
 	case 303:
-#line 1260 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1260 "Parser.rl"
 	{te = p+1;}
 	break;
 	case 304:
-#line 1492 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1492 "Parser.rl"
 	{act = 288;}
 	break;
 	case 305:
-#line 1509 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1509 "Parser.rl"
 	{act = 290;}
 	break;
 	case 306:
-#line 1738 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1738 "Parser.rl"
 	{act = 330;}
 	break;
 	case 307:
-#line 363 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 363 "Parser.rl"
 	{te = p+1;{
         if (sequences.empty()) {
             throw LocatedParseError("Unmatched parentheses");
@@ -4380,43 +4380,43 @@ _eof_trans:
     }}
 	break;
 	case 308:
-#line 1275 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1275 "Parser.rl"
 	{te = p+1;{
                   currentSeq->addAlternation();
               }}
 	break;
 	case 309:
-#line 1280 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1280 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("POSIX named classes are only "
                                           "supported inside a class");
               }}
 	break;
 	case 310:
-#line 1287 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1287 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("Unsupported POSIX collating "
                                           "element");
               }}
 	break;
 	case 311:
-#line 1294 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1294 "Parser.rl"
 	{te = p+1;{
                   {cs = 838; goto _again;}
               }}
 	break;
 	case 312:
-#line 1298 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1298 "Parser.rl"
 	{te = p+1;{ /* noop */ }}
 	break;
 	case 313:
-#line 1300 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1300 "Parser.rl"
 	{te = p+1;{
                   currentSeq->addComponent(generateComponent(CLASS_ANY, false, mode));
               }}
 	break;
 	case 314:
-#line 1304 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1304 "Parser.rl"
 	{te = p+1;{
                   if (mode.utf8) {
                       throw LocatedParseError("\\C is unsupported in UTF8");
@@ -4425,7 +4425,7 @@ _eof_trans:
               }}
 	break;
 	case 315:
-#line 1318 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1318 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(0, ComponentRepeat::NoLimit,
                                         ComponentRepeat::REPEAT_NONGREEDY)) {
@@ -4434,7 +4434,7 @@ _eof_trans:
               }}
 	break;
 	case 316:
-#line 1325 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1325 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(0, ComponentRepeat::NoLimit,
                                         ComponentRepeat::REPEAT_POSSESSIVE)) {
@@ -4443,7 +4443,7 @@ _eof_trans:
               }}
 	break;
 	case 317:
-#line 1339 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1339 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(1, ComponentRepeat::NoLimit,
                                         ComponentRepeat::REPEAT_NONGREEDY)) {
@@ -4452,7 +4452,7 @@ _eof_trans:
               }}
 	break;
 	case 318:
-#line 1346 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1346 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(1, ComponentRepeat::NoLimit,
                                         ComponentRepeat::REPEAT_POSSESSIVE)) {
@@ -4461,7 +4461,7 @@ _eof_trans:
               }}
 	break;
 	case 319:
-#line 1360 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1360 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(
                            0, 1, ComponentRepeat::REPEAT_NONGREEDY)) {
@@ -4470,7 +4470,7 @@ _eof_trans:
               }}
 	break;
 	case 320:
-#line 1367 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1367 "Parser.rl"
 	{te = p+1;{
                   if (!currentSeq->addRepeat(
                            0, 1, ComponentRepeat::REPEAT_POSSESSIVE)) {
@@ -4479,7 +4479,7 @@ _eof_trans:
               }}
 	break;
 	case 321:
-#line 1384 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1384 "Parser.rl"
 	{te = p+1;{
                   if (repeatN > repeatM || repeatM == 0) {
                       throwInvalidRepeat();
@@ -4491,7 +4491,7 @@ _eof_trans:
               }}
 	break;
 	case 322:
-#line 1394 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1394 "Parser.rl"
 	{te = p+1;{
                   if (repeatN > repeatM || repeatM == 0) {
                       throwInvalidRepeat();
@@ -4503,14 +4503,14 @@ _eof_trans:
               }}
 	break;
 	case 323:
-#line 323 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 323 "Parser.rl"
 	{te = p+1;{
         inComment = true;
         {cs = 849; goto _again;}
     }}
 	break;
 	case 324:
-#line 1411 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1411 "Parser.rl"
 	{te = p+1;{ p--; {
         DEBUG_PRINTF("stack %zu top %d\n", stack.size(), top);
         if ((int)stack.size() == top) {
@@ -4519,11 +4519,11 @@ _eof_trans:
     {stack[top++] = cs; cs = 787; goto _again;}} }}
 	break;
 	case 325:
-#line 1415 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1415 "Parser.rl"
 	{te = p+1;{ assert(0); {p++; goto _out; } }}
 	break;
 	case 326:
-#line 1422 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1422 "Parser.rl"
 	{te = p+1;{
                   auto bound = mode.multiline ? ComponentBoundary::BEGIN_LINE
                                               : ComponentBoundary::BEGIN_STRING;
@@ -4531,7 +4531,7 @@ _eof_trans:
               }}
 	break;
 	case 327:
-#line 1429 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1429 "Parser.rl"
 	{te = p+1;{
                   auto bound = mode.multiline ? ComponentBoundary::END_LINE
                                               : ComponentBoundary::END_STRING_OPTIONAL_LF;
@@ -4539,84 +4539,84 @@ _eof_trans:
               }}
 	break;
 	case 328:
-#line 1435 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1435 "Parser.rl"
 	{te = p+1;{
                   auto bound = ComponentBoundary::BEGIN_STRING;
                   currentSeq->addComponent(ue2::make_unique<ComponentBoundary>(bound));
               }}
 	break;
 	case 329:
-#line 1440 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1440 "Parser.rl"
 	{te = p+1;{
                   auto bound = ComponentBoundary::END_STRING_OPTIONAL_LF;
                   currentSeq->addComponent(ue2::make_unique<ComponentBoundary>(bound));
               }}
 	break;
 	case 330:
-#line 1445 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1445 "Parser.rl"
 	{te = p+1;{
                   auto bound = ComponentBoundary::END_STRING;
                   currentSeq->addComponent(ue2::make_unique<ComponentBoundary>(bound));
               }}
 	break;
 	case 331:
-#line 1450 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1450 "Parser.rl"
 	{te = p+1;{
                   currentSeq->addComponent(
                       ue2::make_unique<ComponentWordBoundary>(ts - ptr, false, mode));
               }}
 	break;
 	case 332:
-#line 1455 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1455 "Parser.rl"
 	{te = p+1;{
                   currentSeq->addComponent(
                       ue2::make_unique<ComponentWordBoundary>(ts - ptr, true, mode));
               }}
 	break;
 	case 333:
-#line 1465 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1465 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x09', mode);
               }}
 	break;
 	case 334:
-#line 1469 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1469 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x0a', mode);
               }}
 	break;
 	case 335:
-#line 1473 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1473 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x0d', mode);
               }}
 	break;
 	case 336:
-#line 1477 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1477 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x0c', mode);
               }}
 	break;
 	case 337:
-#line 1481 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1481 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x07', mode);
               }}
 	break;
 	case 338:
-#line 1485 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1485 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, '\x1b', mode);
               }}
 	break;
 	case 339:
-#line 1489 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1489 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, octAccumulator, mode);
               }}
 	break;
 	case 340:
-#line 480 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 480 "Parser.rl"
 	{te = p+1;{
         if (accumulator == 0) {
             throw LocatedParseError("Numbered reference cannot be zero");
@@ -4625,7 +4625,7 @@ _eof_trans:
     }}
 	break;
 	case 341:
-#line 487 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 487 "Parser.rl"
 	{te = p+1;{
         // Accumulator is a negative offset.
         if (accumulator == 0) {
@@ -4639,7 +4639,7 @@ _eof_trans:
     }}
 	break;
 	case 342:
-#line 480 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 480 "Parser.rl"
 	{te = p+1;{
         if (accumulator == 0) {
             throw LocatedParseError("Numbered reference cannot be zero");
@@ -4648,7 +4648,7 @@ _eof_trans:
     }}
 	break;
 	case 343:
-#line 487 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 487 "Parser.rl"
 	{te = p+1;{
         // Accumulator is a negative offset.
         if (accumulator == 0) {
@@ -4662,37 +4662,37 @@ _eof_trans:
     }}
 	break;
 	case 344:
-#line 499 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 499 "Parser.rl"
 	{te = p+1;{
         currentSeq->addComponent(ue2::make_unique<ComponentBackReference>(label));
     }}
 	break;
 	case 345:
-#line 499 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 499 "Parser.rl"
 	{te = p+1;{
         currentSeq->addComponent(ue2::make_unique<ComponentBackReference>(label));
     }}
 	break;
 	case 346:
-#line 499 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 499 "Parser.rl"
 	{te = p+1;{
         currentSeq->addComponent(ue2::make_unique<ComponentBackReference>(label));
     }}
 	break;
 	case 347:
-#line 499 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 499 "Parser.rl"
 	{te = p+1;{
         currentSeq->addComponent(ue2::make_unique<ComponentBackReference>(label));
     }}
 	break;
 	case 348:
-#line 499 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 499 "Parser.rl"
 	{te = p+1;{
         currentSeq->addComponent(ue2::make_unique<ComponentBackReference>(label));
     }}
 	break;
 	case 349:
-#line 1550 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1550 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "Onigiruma subroutine call at index " << ts - ptr <<
@@ -4701,7 +4701,7 @@ _eof_trans:
               }}
 	break;
 	case 350:
-#line 1561 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1561 "Parser.rl"
 	{te = p+1;{
                   string oct(ts + 3, te - ts - 4);
                   unsigned long val;
@@ -4717,13 +4717,13 @@ _eof_trans:
               }}
 	break;
 	case 351:
-#line 1579 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1579 "Parser.rl"
 	{te = p+1;{
                   addEscapedHex(currentSeq, accumulator, mode);
               }}
 	break;
 	case 352:
-#line 1583 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1583 "Parser.rl"
 	{te = p+1;{
                   string hex(ts + 3, te - ts - 4);
                   unsigned long val;
@@ -4739,7 +4739,7 @@ _eof_trans:
               }}
 	break;
 	case 353:
-#line 1601 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1601 "Parser.rl"
 	{te = p+1;{
                   if (te - ts < 3) {
                       assert(te - ts == 2);
@@ -4751,7 +4751,7 @@ _eof_trans:
               }}
 	break;
 	case 354:
-#line 1611 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1611 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "'\\" << *(ts + 1) << "' at index " << ts - ptr
@@ -4760,77 +4760,77 @@ _eof_trans:
               }}
 	break;
 	case 355:
-#line 1619 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1619 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_WORD, false, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 356:
-#line 1624 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1624 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_WORD, true, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 357:
-#line 1629 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1629 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_SPACE, false, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 358:
-#line 1634 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1634 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_SPACE, true, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 359:
-#line 1639 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1639 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_DIGIT, false, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 360:
-#line 1644 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1644 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_DIGIT, true, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 361:
-#line 1649 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1649 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_HORZ, false, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 362:
-#line 1654 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1654 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_HORZ, true, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 363:
-#line 1659 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1659 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_VERT, false, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 364:
-#line 1664 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1664 "Parser.rl"
 	{te = p+1;{
                   auto cc = generateComponent(CLASS_VERT, true, mode);
                   currentSeq->addComponent(move(cc));
               }}
 	break;
 	case 365:
-#line 1669 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1669 "Parser.rl"
 	{te = p+1;{
                   assert(!currentCls && !inCharClass);
                   currentCls = getComponentClass(mode);
@@ -4845,7 +4845,7 @@ _eof_trans:
               }}
 	break;
 	case 366:
-#line 1677 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1677 "Parser.rl"
 	{te = p+1;{
                   assert(!currentCls && !inCharClass);
                   currentCls = getComponentClass(mode);
@@ -4860,7 +4860,7 @@ _eof_trans:
               }}
 	break;
 	case 367:
-#line 1685 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1685 "Parser.rl"
 	{te = p+1;{
                   assert(!currentCls && !inCharClass);
                   currentCls = getComponentClass(mode);
@@ -4875,7 +4875,7 @@ _eof_trans:
               }}
 	break;
 	case 368:
-#line 1693 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1693 "Parser.rl"
 	{te = p+1;{
                   assert(!currentCls && !inCharClass);
                   currentCls = getComponentClass(mode);
@@ -4890,7 +4890,7 @@ _eof_trans:
               }}
 	break;
 	case 369:
-#line 1705 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1705 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "\\R at index " << ts - ptr << " not supported.";
@@ -4898,7 +4898,7 @@ _eof_trans:
               }}
 	break;
 	case 370:
-#line 1712 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1712 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "\\K at index " << ts - ptr << " not supported.";
@@ -4906,7 +4906,7 @@ _eof_trans:
               }}
 	break;
 	case 371:
-#line 1727 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1727 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "\\G at index " << ts - ptr << " not supported.";
@@ -4914,33 +4914,33 @@ _eof_trans:
               }}
 	break;
 	case 372:
-#line 1733 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1733 "Parser.rl"
 	{te = p+1;{
                   currentSeq->addComponent(ue2::make_unique<ComponentEUS>(ts - ptr, mode));
               }}
 	break;
 	case 373:
-#line 1738 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1738 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, *(ts + 1), mode);
               }}
 	break;
 	case 374:
-#line 317 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 317 "Parser.rl"
 	{te = p+1;{ 
         inComment = true;
         {cs = 848; goto _again;}
     }}
 	break;
 	case 375:
-#line 434 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 434 "Parser.rl"
 	{te = p+1;{
         mode = newMode;
         currentSeq->addComponent(ue2::make_unique<ComponentEmpty>());
     }}
 	break;
 	case 376:
-#line 356 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 356 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         mode = newMode;
@@ -4949,7 +4949,7 @@ _eof_trans:
     }}
 	break;
 	case 377:
-#line 370 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 370 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         currentSeq = enterSequence(currentSeq,
@@ -4958,7 +4958,7 @@ _eof_trans:
     }}
 	break;
 	case 378:
-#line 376 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 376 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         currentSeq = enterSequence(currentSeq,
@@ -4967,7 +4967,7 @@ _eof_trans:
     }}
 	break;
 	case 379:
-#line 382 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 382 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         currentSeq = enterSequence(currentSeq,
@@ -4976,7 +4976,7 @@ _eof_trans:
     }}
 	break;
 	case 380:
-#line 388 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 388 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         currentSeq = enterSequence(currentSeq,
@@ -4985,19 +4985,19 @@ _eof_trans:
     }}
 	break;
 	case 381:
-#line 394 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 394 "Parser.rl"
 	{te = p+1;{
         throw LocatedParseError("Embedded code is not supported");
     }}
 	break;
 	case 382:
-#line 394 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 394 "Parser.rl"
 	{te = p+1;{
         throw LocatedParseError("Embedded code is not supported");
     }}
 	break;
 	case 383:
-#line 417 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 417 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         currentSeq = enterSequence(currentSeq,
@@ -5005,7 +5005,7 @@ _eof_trans:
     }}
 	break;
 	case 384:
-#line 337 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 337 "Parser.rl"
 	{te = p+1;{
         assert(!label.empty()); // should be guaranteed by machine
         char c = *label.begin();
@@ -5023,19 +5023,19 @@ _eof_trans:
     }}
 	break;
 	case 385:
-#line 400 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 400 "Parser.rl"
 	{te = p+1;{
         throw LocatedParseError("Subpattern reference unsupported");
     }}
 	break;
 	case 386:
-#line 400 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 400 "Parser.rl"
 	{te = p+1;{
         throw LocatedParseError("Subpattern reference unsupported");
     }}
 	break;
 	case 387:
-#line 1784 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1784 "Parser.rl"
 	{te = p+1;{
                   auto a = ue2::make_unique<ComponentAssertion>(
                         ComponentAssertion::LOOKAHEAD, ComponentAssertion::POS);
@@ -5048,7 +5048,7 @@ _eof_trans:
               }}
 	break;
 	case 388:
-#line 1795 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1795 "Parser.rl"
 	{te = p+1;{
                   auto a = ue2::make_unique<ComponentAssertion>(
                         ComponentAssertion::LOOKAHEAD, ComponentAssertion::NEG);
@@ -5061,7 +5061,7 @@ _eof_trans:
               }}
 	break;
 	case 389:
-#line 1806 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1806 "Parser.rl"
 	{te = p+1;{
                   auto a = ue2::make_unique<ComponentAssertion>(
                       ComponentAssertion::LOOKBEHIND, ComponentAssertion::POS);
@@ -5074,7 +5074,7 @@ _eof_trans:
               }}
 	break;
 	case 390:
-#line 1817 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1817 "Parser.rl"
 	{te = p+1;{
                   auto a = ue2::make_unique<ComponentAssertion>(
                       ComponentAssertion::LOOKBEHIND, ComponentAssertion::NEG);
@@ -5087,13 +5087,13 @@ _eof_trans:
               }}
 	break;
 	case 391:
-#line 1829 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1829 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("Pattern recursion not supported");
               }}
 	break;
 	case 392:
-#line 403 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 403 "Parser.rl"
 	{te = p+1;{
         if (accumulator == 0) {
             throw LocatedParseError("Numbered reference cannot be zero");
@@ -5104,7 +5104,7 @@ _eof_trans:
     }}
 	break;
 	case 393:
-#line 411 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 411 "Parser.rl"
 	{te = p+1;{
         PUSH_SEQUENCE;
         assert(!label.empty());
@@ -5113,7 +5113,7 @@ _eof_trans:
     }}
 	break;
 	case 394:
-#line 1845 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1845 "Parser.rl"
 	{te = p+1;{
                   ostringstream str;
                   str << "Callout at index " << ts - ptr << " not supported.";
@@ -5121,13 +5121,13 @@ _eof_trans:
               }}
 	break;
 	case 395:
-#line 1853 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1853 "Parser.rl"
 	{te = p+1;{
                   throw LocatedParseError("Unrecognised character after (?");
               }}
 	break;
 	case 396:
-#line 1858 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1858 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -5138,7 +5138,7 @@ _eof_trans:
               }}
 	break;
 	case 397:
-#line 1867 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1867 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -5149,7 +5149,7 @@ _eof_trans:
               }}
 	break;
 	case 398:
-#line 1876 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1876 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   /* leverage ComponentClass to generate the vertices */
@@ -5160,14 +5160,14 @@ _eof_trans:
               }}
 	break;
 	case 399:
-#line 1885 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1885 "Parser.rl"
 	{te = p+1;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 400:
-#line 1894 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1894 "Parser.rl"
 	{te = p+1;{
                   if (mode.ignore_space == false) {
                       addLiteral(currentSeq, *ts, mode);
@@ -5175,13 +5175,13 @@ _eof_trans:
               }}
 	break;
 	case 401:
-#line 1899 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1899 "Parser.rl"
 	{te = p+1;{
                   addLiteral(currentSeq, *ts, mode);
               }}
 	break;
 	case 402:
-#line 329 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 329 "Parser.rl"
 	{te = p;p--;{
         PUSH_SEQUENCE;
         auto seq = ue2::make_unique<ComponentSequence>();
@@ -5190,7 +5190,7 @@ _eof_trans:
     }}
 	break;
 	case 403:
-#line 422 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 422 "Parser.rl"
 	{te = p;p--;{
         assert(!currentCls);
         assert(!inCharClass); // not reentrant
@@ -5202,7 +5202,7 @@ _eof_trans:
     }}
 	break;
 	case 404:
-#line 1311 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1311 "Parser.rl"
 	{te = p;p--;{
                   if (!currentSeq->addRepeat(0, ComponentRepeat::NoLimit,
                                              ComponentRepeat::REPEAT_GREEDY)) {
@@ -5211,7 +5211,7 @@ _eof_trans:
               }}
 	break;
 	case 405:
-#line 1332 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1332 "Parser.rl"
 	{te = p;p--;{
                   if (!currentSeq->addRepeat(1, ComponentRepeat::NoLimit,
                                              ComponentRepeat::REPEAT_GREEDY)) {
@@ -5220,7 +5220,7 @@ _eof_trans:
               }}
 	break;
 	case 406:
-#line 1353 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1353 "Parser.rl"
 	{te = p;p--;{
                   if (!currentSeq->addRepeat(
                            0, 1, ComponentRepeat::REPEAT_GREEDY)) {
@@ -5229,7 +5229,7 @@ _eof_trans:
               }}
 	break;
 	case 407:
-#line 1374 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1374 "Parser.rl"
 	{te = p;p--;{
                   if (repeatN > repeatM || repeatM == 0) {
                       throwInvalidRepeat();
@@ -5241,13 +5241,13 @@ _eof_trans:
               }}
 	break;
 	case 408:
-#line 1489 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1489 "Parser.rl"
 	{te = p;p--;{
                   addLiteral(currentSeq, octAccumulator, mode);
               }}
 	break;
 	case 409:
-#line 1492 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1492 "Parser.rl"
 	{te = p;p--;{
                   // If there are enough capturing sub expressions, this may be
                   // a back reference
@@ -5260,7 +5260,7 @@ _eof_trans:
               }}
 	break;
 	case 410:
-#line 480 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 480 "Parser.rl"
 	{te = p;p--;{
         if (accumulator == 0) {
             throw LocatedParseError("Numbered reference cannot be zero");
@@ -5269,7 +5269,7 @@ _eof_trans:
     }}
 	break;
 	case 411:
-#line 480 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 480 "Parser.rl"
 	{te = p;p--;{
         if (accumulator == 0) {
             throw LocatedParseError("Numbered reference cannot be zero");
@@ -5278,7 +5278,7 @@ _eof_trans:
     }}
 	break;
 	case 412:
-#line 487 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 487 "Parser.rl"
 	{te = p;p--;{
         // Accumulator is a negative offset.
         if (accumulator == 0) {
@@ -5292,31 +5292,31 @@ _eof_trans:
     }}
 	break;
 	case 413:
-#line 1558 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1558 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Invalid reference after \\g");
               }}
 	break;
 	case 414:
-#line 1575 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1575 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Value in \\o{...} sequence is non-octal or missing braces");
               }}
 	break;
 	case 415:
-#line 1579 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1579 "Parser.rl"
 	{te = p;p--;{
                   addEscapedHex(currentSeq, accumulator, mode);
               }}
 	break;
 	case 416:
-#line 1597 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1597 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Value in \\x{...} sequence is non-hex or missing }");
               }}
 	break;
 	case 417:
-#line 1601 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1601 "Parser.rl"
 	{te = p;p--;{
                   if (te - ts < 3) {
                       assert(te - ts == 2);
@@ -5328,15 +5328,15 @@ _eof_trans:
               }}
 	break;
 	case 418:
-#line 1701 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1701 "Parser.rl"
 	{te = p;p--;{ throw LocatedParseError("Malformed property"); }}
 	break;
 	case 419:
-#line 1702 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1702 "Parser.rl"
 	{te = p;p--;{ throw LocatedParseError("Malformed property"); }}
 	break;
 	case 420:
-#line 1720 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1720 "Parser.rl"
 	{te = p;p--;{
                   ostringstream str;
                   str << "\\k at index " << ts - ptr << " not supported.";
@@ -5344,7 +5344,7 @@ _eof_trans:
               }}
 	break;
 	case 421:
-#line 1743 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1743 "Parser.rl"
 	{te = p;p--;{
                   assert(ts + 1 == pe);
                   ostringstream str;
@@ -5353,32 +5353,32 @@ _eof_trans:
               }}
 	break;
 	case 422:
-#line 397 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 397 "Parser.rl"
 	{te = p;p--;{
         throw LocatedParseError("Conditional subpattern unsupported");
     }}
 	break;
 	case 423:
-#line 1853 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1853 "Parser.rl"
 	{te = p;p--;{
                   throw LocatedParseError("Unrecognised character after (?");
               }}
 	break;
 	case 424:
-#line 1885 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1885 "Parser.rl"
 	{te = p;p--;{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 425:
-#line 1899 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1899 "Parser.rl"
 	{te = p;p--;{
                   addLiteral(currentSeq, *ts, mode);
               }}
 	break;
 	case 426:
-#line 329 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 329 "Parser.rl"
 	{{p = ((te))-1;}{
         PUSH_SEQUENCE;
         auto seq = ue2::make_unique<ComponentSequence>();
@@ -5387,7 +5387,7 @@ _eof_trans:
     }}
 	break;
 	case 427:
-#line 422 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 422 "Parser.rl"
 	{{p = ((te))-1;}{
         assert(!currentCls);
         assert(!inCharClass); // not reentrant
@@ -5399,25 +5399,25 @@ _eof_trans:
     }}
 	break;
 	case 428:
-#line 1558 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1558 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Invalid reference after \\g");
               }}
 	break;
 	case 429:
-#line 1575 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1575 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Value in \\o{...} sequence is non-octal or missing braces");
               }}
 	break;
 	case 430:
-#line 1597 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1597 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Value in \\x{...} sequence is non-hex or missing }");
               }}
 	break;
 	case 431:
-#line 1720 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1720 "Parser.rl"
 	{{p = ((te))-1;}{
                   ostringstream str;
                   str << "\\k at index " << ts - ptr << " not supported.";
@@ -5425,26 +5425,26 @@ _eof_trans:
               }}
 	break;
 	case 432:
-#line 397 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 397 "Parser.rl"
 	{{p = ((te))-1;}{
         throw LocatedParseError("Conditional subpattern unsupported");
     }}
 	break;
 	case 433:
-#line 1853 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1853 "Parser.rl"
 	{{p = ((te))-1;}{
                   throw LocatedParseError("Unrecognised character after (?");
               }}
 	break;
 	case 434:
-#line 1885 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1885 "Parser.rl"
 	{{p = ((te))-1;}{
                   assert(mode.utf8);
                   throwInvalidUtf8();
               }}
 	break;
 	case 435:
-#line 1899 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1899 "Parser.rl"
 	{{p = ((te))-1;}{
                   addLiteral(currentSeq, *ts, mode);
               }}
@@ -5505,7 +5505,7 @@ _eof_trans:
 	}
 	}
 	break;
-#line 5509 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 5509 "Parser.cpp"
 		}
 	}
 
@@ -5518,7 +5518,7 @@ _again:
 #line 1 "NONE"
 	{ts = 0;}
 	break;
-#line 5522 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 5522 "Parser.cpp"
 		}
 	}
 
@@ -5538,10 +5538,10 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 22:
-#line 731 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 731 "Parser.rl"
 	{ throw LocatedParseError("Malformed property"); }
 	break;
-#line 5545 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/Parser.cpp"
+#line 5545 "Parser.cpp"
 		}
 	}
 	}
@@ -5549,7 +5549,7 @@ _again:
 	_out: {}
 	}
 
-#line 1985 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/Parser.rl"
+#line 1985 "Parser.rl"
 
         if (p != pe && *p != '\0') {
             // didn't make it to the end of our input, but we didn't throw a ParseError?

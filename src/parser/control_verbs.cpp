@@ -1,5 +1,5 @@
 
-#line 1 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 1 "control_verbs.rl"
 /*
  * Copyright (c) 2017, Intel Corporation
  *
@@ -55,7 +55,7 @@ const char *read_control_verbs(const char *ptr, const char *end, size_t start,
     UNUSED int act;
 
     
-#line 59 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 59 "control_verbs.cpp"
 static const char _ControlVerbs_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
 	3, 1, 4, 1, 5, 1, 6, 1, 
@@ -245,7 +245,7 @@ static const int ControlVerbs_start = 75;
 //static const int ControlVerbs_en_main = 75;
 
 
-#line 249 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 249 "control_verbs.cpp"
 	{
 	cs = ControlVerbs_start;
 	ts = 0;
@@ -253,12 +253,12 @@ static const int ControlVerbs_start = 75;
 	act = 0;
 	}
 
-#line 105 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 105 "control_verbs.rl"
 
 
     try {
         
-#line 262 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 262 "control_verbs.cpp"
 	{
 	int _klen;
 	unsigned int _trans;
@@ -277,7 +277,7 @@ _resume:
 #line 1 "NONE"
 	{ts = p;}
 	break;
-#line 281 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 281 "control_verbs.cpp"
 		}
 	}
 
@@ -348,19 +348,19 @@ _eof_trans:
 	{te = p+1;}
 	break;
 	case 3:
-#line 76 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 76 "control_verbs.rl"
 	{te = p+1;{
                 mode.utf8 = true;
             }}
 	break;
 	case 4:
-#line 80 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 80 "control_verbs.rl"
 	{te = p+1;{
                 mode.ucp = true;
             }}
 	break;
 	case 5:
-#line 84 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 84 "control_verbs.rl"
 	{te = p+1;{
                 ostringstream str;
                 str << "Unsupported control verb " << string(ts, te - ts);
@@ -368,7 +368,7 @@ _eof_trans:
             }}
 	break;
 	case 6:
-#line 90 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 90 "control_verbs.rl"
 	{te = p+1;{
                 ostringstream str;
                 str << "Unknown control verb " << string(ts, te - ts);
@@ -376,27 +376,27 @@ _eof_trans:
             }}
 	break;
 	case 7:
-#line 97 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 97 "control_verbs.rl"
 	{te = p+1;{
                 p--;
                 {p++; goto _out; }
             }}
 	break;
 	case 8:
-#line 97 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 97 "control_verbs.rl"
 	{te = p;p--;{
                 p--;
                 {p++; goto _out; }
             }}
 	break;
 	case 9:
-#line 97 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 97 "control_verbs.rl"
 	{{p = ((te))-1;}{
                 p--;
                 {p++; goto _out; }
             }}
 	break;
-#line 400 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 400 "control_verbs.cpp"
 		}
 	}
 
@@ -409,7 +409,7 @@ _again:
 #line 1 "NONE"
 	{ts = 0;}
 	break;
-#line 413 "/home/danlark/ClickHouse/build/contrib/hyperscan/src/parser/control_verbs.cpp"
+#line 413 "control_verbs.cpp"
 		}
 	}
 
@@ -427,7 +427,7 @@ _again:
 	_out: {}
 	}
 
-#line 109 "/home/danlark/ClickHouse/contrib/hyperscan/src/parser/control_verbs.rl"
+#line 109 "control_verbs.rl"
     } catch (LocatedParseError &error) {
         if (ts >= ptr && ts <= pe) {
             error.locate(ts - ptr + start);
