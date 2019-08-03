@@ -82,14 +82,17 @@ else()
 endif()
 
 # allow for reproducible builds - python for portability
-if (DEFINED ENV{SOURCE_DATE_EPOCH})
-      execute_process(
-          COMMAND "${PYTHON}" "${CMAKE_MODULE_PATH}/formatdate.py" "$ENV{SOURCE_DATE_EPOCH}"
-          OUTPUT_VARIABLE BUILD_DATE
-          OUTPUT_STRIP_TRAILING_WHITESPACE)
-else ()
-    string (TIMESTAMP BUILD_DATE "%Y-%m-%d")
-endif ()
+#if (DEFINED ENV{SOURCE_DATE_EPOCH})
+#      execute_process(
+#          COMMAND "${PYTHON}" "${CMAKE_MODULE_PATH}/formatdate.py" "$ENV{SOURCE_DATE_EPOCH}"
+#          OUTPUT_VARIABLE BUILD_DATE
+#          OUTPUT_STRIP_TRAILING_WHITESPACE)
+#else ()
+#    string (TIMESTAMP BUILD_DATE "%Y-%m-%d")
+#endif ()
+
+set (BUILD_DATE "2000-01-01")
+
 message(STATUS "Build date: ${BUILD_DATE}")
 
 
