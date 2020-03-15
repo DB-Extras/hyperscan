@@ -38,6 +38,10 @@
 #define CPUID_H_
 #endif
 
+#ifdef _MSC_VER
+#include <intrin.h> /* for __cpuidex */
+#endif
+
 #ifdef __cplusplus
 extern "C"
 {
